@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestion 2 - DOM VS BOM en JavaScript</title>
+</head>
+
+<body>
+
+    <h2>DOM vs BOM en JavaScript</h2><br>
+
+    <form action="" id="formulario">
+        <!--Formulario-->
+
+        <label for="nombre">Introduce su nombre:<input type="text" id="nombre" name="nombre" required></label><br>
+        <label for="apellidos">Introduce su apellido:<input type="text" id="apellidos" name="apellidos" required></label><br>
+        <label for="fechaNacimiento">Introduzca su fecha de nacimiento<input type="date" id="fechaNacimiento"name="fechaNacimiento" required></label><br>
+        <label for="numeroMovil">Introduzca su numero de movil:<input type="tel" id="numeroMovil" name="numeroMovil"></label><br>
+        <label for="correoElectronico">Introduzca su correo electronico: <input type="email" id="correoElectronico" name="correoElectronico" required></label><br>
+        <p><label for="genero">Seleccione su genero </label>
+            <input type="radio" id="opt1" name="radio" value="Masculino"><label for="opt1">Masculino</label>
+            <input type="radio" id="opt2" name="radio" value="Femenino"><label for="opt2">Femenino</label>
+            <input type="radio" id="opt3" name="radio" value="Otro"><label for="opt3">Otro</label>
+        </p><br>
+        <input type="submit" value="Enviar" id="botonEnviar" onclick="crearFila(event)">
+
+    </form>
+    <br><br>
+    <table id="tablaDatosUsuarios" border="1px solid black">
+        <!--Tabla-->
+
+        <tr>
+            <!--Fila-->
+            <td>Nombre</td>
+            <!--columna-->
+            <td>Apellidos</td>
+            <td>Fecha Nacimiento</td>
+            <td>Numero Movil</td>
+            <td>Correo Electronico</td>
+            <td>Genero</td>
+        </tr>
+        
+    </table>
+
+    <br><br>
+
+    <img src="imagenes/imagen1.jpg" width="200px" height="200px" onmouseover="cambio()" onmouseout="recargar()">
+    <img src="imagenes/imagen3.jpg" width="200px" height="200px" onclick="agrandar()" ondblclick="volverTamano()">
+    <img src="imagenes/imagen4.jpg" width="200px" height="200px" onclick="desaparecer()">
+
+    <script>
+    
+        var foto = document.getElementsByTagName("img")[0];
+        var foto2 = document.getElementsByTagName("img")[1];
+        var foto3 = document.getElementsByTagName("img")[2];
+        
+
+        function cambio() {
+
+            foto.src = "imagenes/imagen2.jpg";
+
+        }
+
+        function recargar(){
+            foto.src="imagenes/imagen1.jpg";
+        }
+
+        function agrandar(){
+            foto2.style.width="500px";
+            foto2.style.height="500px";
+        }
+
+        function volverTamano(){
+            foto2.style.width="200px";
+            foto2.style.height="200px";
+        }
+
+
+        function crearFila(event){
+
+    var nombreUsuario = document.getElementById("nombre").value;
+    var apellidosUsuario = document.getElementById("apellidos").value;
+    var fechaNacimientoUsuario = document.getElementById("fechaNacimiento").value;
+    var numeroMovilUsuario = document.getElementById("numeroMovil").value;
+    var correoElectronicoUsuario = document.getElementById("correoElectronico").value;
+    
+    var genero = document.getElementsByName("radio");
+    var seleccionado;
+    genero.forEach(function(button){
+
+        if(button.checked ){
+            seleccionado = button.value;
+            
+        }
+        
+    });
+
+
+            event.preventDefault();
+           // console.log("nombre" + nombreUsuario +"  apellidos" + apellidosUsuario +"  fechaNacimientoUsuario" + fechaNacimientoUsuario +"  numeroUsuario" + numeroMovilUsuario + "   correoUsuario" + correoElectronicoUsuario);
+       
+            console.log(genero);
+
+           var tabla=document.getElementById("tablaDatosUsuarios");
+           var fila = document.createElement("tr");
+
+           fila.innerHTML="<td>" + nombreUsuario +"</td>" + "<td>" + apellidosUsuario +"</td>" + "<td>" + fechaNacimientoUsuario +"</td>" + "<td>" + numeroMovilUsuario +"</td>"+ "<td>" + correoElectronicoUsuario +"</td>"+ "<td>" + seleccionado +"</td>"  ;
+            tabla.append(fila);
+
+        
+        }
+
+        function desaparecer(){
+            foto3.style.display="none";
+        }
+
+    </script>
+
+    <hr><br>
+
+    <script>
+        var navegador =navigator.appName;
+    document.write("Navegador:  "+navegador + "<br>");
+
+
+        var version = navigator.appVersion;
+        document.write("Version de Navegador:  "+version+ "<br>");
+
+    var lenguaje = window.navigator.language;
+    document.write("Lenguaje de Navegador:  "+lenguaje+ "<br>");
+
+    var alto =window.screen.availHeight;
+    var ancho = window.screen.availWidth;
+    document.write("Resolucion del Navegador:  "+ alto + "  x  "+ ancho+ "<br>");
+
+
+    </script>
+    
+
+
+
+
+</body>
+
+</html>
